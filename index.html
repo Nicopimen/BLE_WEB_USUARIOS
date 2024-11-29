@@ -18,7 +18,7 @@
                     <button id="connectBleButton" class="connectButton"> Conectar </button>
                     <button id="disconnectBleButton" class="disconnectButton"> Desconectar</button>
                 </p>
-                <p class="gray-label">BLE state: <strong><span id="bleState" style="color:#d13a30;">Disconnected</span></strong></p>
+                <p class="gray-label">Estado BLE: <strong><span id="bleState" style="color:#d13a30;">Deconectado</span></strong></p>
             </div>
         </div>
         <div class="card-grid">
@@ -50,7 +50,7 @@
     const timestampContainer = document.getElementById('timestamp');
 
     //Define BLE Device Specs
-    var deviceName ='ESP32_BLE';
+    var deviceName ='COFACO_BLE';
     var bleService = 'b8d7ce51-ab47-4ff8-aa8c-2fb686bbceb3';
     var ledCharacteristic = 'eeee0cae-4c2d-4222-83fa-a82322668851';
     var sensorCharacteristic= 'f60844f9-f620-4e3e-9c0d-e530339f9bb9';
@@ -89,8 +89,7 @@
     function connectToDevice(){
         console.log('Initializing Bluetooth...');
         navigator.bluetooth.requestDevice({
-            //filters: [{name: deviceName}],
-            filters: [],
+            filters: [{name: deviceName}],
             optionalServices: [bleService]
         })
         .then(device => {
