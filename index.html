@@ -29,7 +29,7 @@
             </div>
 
             <div class="card">
-                <h2>Ato Bajo Fuego</h2>
+                <h2>Iniciar Encendido</h2>
                 <button id="onButton" class="onButton">ON</button>
                 <button id="offButton" class="offButton">OFF</button>
                 <p class="gray-label">Ultimo valor: <span id="valueSent"></span></p>
@@ -95,7 +95,7 @@
         })
         .then(device => {
             console.log('Device Selected:', device.name);
-            bleStateContainer.innerHTML = 'Connected to device ' + device.name;
+            bleStateContainer.innerHTML = 'Conectado ' + device.name;
             bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
             return device.gatt.connect();
@@ -131,7 +131,7 @@
 
     function onDisconnected(event){
         console.log('Device Disconnected:', event.target.device.name);
-        bleStateContainer.innerHTML = "Device disconnected";
+        bleStateContainer.innerHTML = "Desconectado";
         bleStateContainer.style.color = "#d13a30";
 
         connectToDevice();
@@ -161,7 +161,7 @@
             });
         } else {
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
-            window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
+            window.alert("Bluetooth no conectado. \n Debe conectarse!")
         }
     }
 
@@ -176,7 +176,7 @@
                     })
                     .then(() => {
                         console.log("Device Disconnected");
-                        bleStateContainer.innerHTML = "Device Disconnected";
+                        bleStateContainer.innerHTML = "Desconectado";
                         bleStateContainer.style.color = "#d13a30";
 
                     })
@@ -189,7 +189,7 @@
         } else {
             // Throw an error if Bluetooth is not connected
             console.error("Bluetooth is not connected.");
-            window.alert("Bluetooth is not connected.")
+            window.alert("Bluetooth no conectado.")
         }
     }
 
