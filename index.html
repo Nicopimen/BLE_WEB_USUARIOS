@@ -150,11 +150,11 @@
         retrievedValue.innerHTML = newValueReceived;
         timestampContainer.innerHTML = getDateTime();
         if((newValueReceived.includes("AL"))
-            onButton.value = "REARMAR";
+            onButton.innerText = "REARMAR";
         else  if(newValueReceived.localeCompare("LISTO")!=0)
-            onButton.value = "APAGAR";
+            onButton.innerText = "APAGAR";
         else
-            onButton.value = "ENCENDER";
+            onButton.innerText = "ENCENDER";
     }
 
     function writeOnCharacteristic(value, caracteristica){
