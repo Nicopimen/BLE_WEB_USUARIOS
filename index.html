@@ -30,9 +30,9 @@
 
             <div class="card">
                 <h2>Iniciar Encendido</h2>
-                <button id="onButton" class="onButton">ON</button>
-                <button id="offButton" class="offButton">OFF</button>
-                <p class="gray-label">Ultimo valor: <span id="valueSent"></span></p>
+                <button id="onButton" class="onButton">ENCENDER</button>
+               <! -- <button id="offButton" class="offButton">OFF</button>-->
+              <! --  <p class="gray-label">Ultimo valor: <span id="valueSent"></span></p> -->
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
     const connectButton = document.getElementById('connectBleButton');
     const disconnectButton = document.getElementById('disconnectBleButton');
     const onButton = document.getElementById('onButton');
-    const offButton = document.getElementById('offButton');
+   // const offButton = document.getElementById('offButton');
     const retrievedValue = document.getElementById('valueContainer');
     const latestValueSent = document.getElementById('valueSent');
     const bleStateContainer = document.getElementById('bleState');
@@ -52,8 +52,13 @@
     //Define BLE Device Specs
     var deviceName ='COFACO_BLE';
     var bleService = 'b8d7ce51-ab47-4ff8-aa8c-2fb686bbceb3';
-    var ledCharacteristic = 'eeee0cae-4c2d-4222-83fa-a82322668851';
-    var sensorCharacteristic= 'f60844f9-f620-4e3e-9c0d-e530339f9bb9';
+   // var ledCharacteristic = 'eeee0cae-4c2d-4222-83fa-a82322668851';
+   // var sensorCharacteristic= 'f60844f9-f620-4e3e-9c0d-e530339f9bb9';
+
+   var ESTADO_CHARACTERISTIC_UUID         "f60844f9-f620-4e3e-9c0d-e530339f9bb9"
+   var START_STOP_CHARACTERISTIC_UUID     "eeee0cae-4c2d-4222-83fa-a82322668851"
+   var ALTO_BAJO_CHARACTERISTIC_UUID      "be2fb044-c6a5-46a8-97b2-2a8eae7012c1"
+   var PARAMETRO_CHARACTERISTIC_UUID      "2bbdf4a6-104a-4c6d-a625-469fe13c4b53"
 
     //Global Variables to Handle Bluetooth
     var bleServer;
@@ -72,7 +77,7 @@
 
     // Write to the ESP32 LED Characteristic
     onButton.addEventListener('click', () => writeOnCharacteristic(1));
-    offButton.addEventListener('click', () => writeOnCharacteristic(0));
+   // offButton.addEventListener('click', () => writeOnCharacteristic(0));
 
     // Check if BLE is available in your Browser
     function isWebBluetoothEnabled() {
@@ -108,7 +113,7 @@
         .then(service => {
             bleServiceFound = service;
             console.log("Service discovered:", service.uuid);
-            return service.getCharacteristic(sensorCharacteristic);
+            return service.getCharacteristic(ESTADO_CHARACTERISTIC_UUID);
         })
         .then(characteristic => {
             console.log("Characteristic discovered:", characteristic.uuid);
@@ -146,18 +151,18 @@
 
     function writeOnCharacteristic(value){
         if (bleServer && bleServer.connected) {
-            bleServiceFound.getCharacteristic(ledCharacteristic)
+            bleServiceFound.getCharacteristic(START_STOP_CHARACTERISTIC_UUID)
             .then(characteristic => {
-                console.log("Found the LED characteristic: ", characteristic.uuid);
+                console.log("Found the start-stop characteristic: ", characteristic.uuid);
                 const data = new Uint8Array([value]);
                 return characteristic.writeValue(data);
             })
             .then(() => {
                 latestValueSent.innerHTML = value;
-                console.log("Value written to LEDcharacteristic:", value);
+                console.log("Value written to start-stop characteristic:", value);
             })
             .catch(error => {
-                console.error("Error writing to the LED characteristic: ", error);
+                console.error("Error writing to the start-stop characteristic: ", error);
             });
         } else {
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
