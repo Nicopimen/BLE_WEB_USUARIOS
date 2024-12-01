@@ -32,7 +32,7 @@
                 <h2>Iniciar Encendido</h2>
                 <button id="onButton" class="onButton">ENCENDER</button>
                <! -- <button id="offButton" class="offButton">OFF</button>-->
-              <! --  <p class="gray-label">Ultimo valor: <span id="valueSent"></span></p> -->
+               <! -- <p class="gray-label">Ultimo valor: <span id="valueSent"></span></p> -->
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
     const onButton = document.getElementById('onButton');
    // const offButton = document.getElementById('offButton');
     const retrievedValue = document.getElementById('valueContainer');
-    const latestValueSent = document.getElementById('valueSent');
+   // const latestValueSent = document.getElementById('valueSent');
     const bleStateContainer = document.getElementById('bleState');
     const timestampContainer = document.getElementById('timestamp');
 
@@ -158,7 +158,7 @@
                 return characteristic.writeValue(data);
             })
             .then(() => {
-                latestValueSent.innerHTML = value;
+               // latestValueSent.innerHTML = value;
                 console.log("Value written to start-stop characteristic:", value);
             })
             .catch(error => {
