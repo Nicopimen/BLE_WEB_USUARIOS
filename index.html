@@ -31,6 +31,7 @@
             <div class="card">
                 <h2>Iniciar Encendido</h2>
                 <button id="onButton" class="onButton">ENCENDER</button>
+                <button id="abfButton" class="onButton">BAJO FUEGO</button>
               
             </div>
         </div>
@@ -42,6 +43,7 @@
     const connectButton = document.getElementById('connectBleButton');
     const disconnectButton = document.getElementById('disconnectBleButton');
     const onButton = document.getElementById('onButton');
+    const abfButton = document.getElementById('abfButton');
    // const offButton = document.getElementById('offButton');
     const retrievedValue = document.getElementById('valueContainer');
    // const latestValueSent = document.getElementById('valueSent');
@@ -75,7 +77,8 @@
     disconnectButton.addEventListener('click', disconnectDevice);
 
     // Write to the ESP32 LED Characteristic
-    onButton.addEventListener('click', () => writeOnCharacteristic(1));
+    onButton.addEventListener('click', () => writeOnCharacteristic(1,START_STOP_CHARACTERISTIC_UUID));
+    abfButton.addEventListener('click', () => writeOnCharacteristic(1,ALTO_BAJO_CHARACTERISTIC_UUID));
    // offButton.addEventListener('click', () => writeOnCharacteristic(0));
 
     // Check if BLE is available in your Browser
@@ -148,20 +151,20 @@
         timestampContainer.innerHTML = getDateTime();
     }
 
-    function writeOnCharacteristic(value){
+    function writeOnCharacteristic(value, caracteristica){
         if (bleServer && bleServer.connected) {
-            bleServiceFound.getCharacteristic(START_STOP_CHARACTERISTIC_UUID)
+            bleServiceFound.getCharacteristic(caracteristica)
             .then(characteristic => {
-                console.log("Found the start-stop characteristic: ", characteristic.uuid);
+                console.log("Found the characteristic: ", characteristic.uuid);
                 const data = new Uint8Array([value]);
                 return characteristic.writeValue(data);
             })
             .then(() => {
                // latestValueSent.innerHTML = value;
-                console.log("Value written to start-stop characteristic:", value);
+                console.log("Value written to characteristic:", value);
             })
             .catch(error => {
-                console.error("Error writing to the start-stop characteristic: ", error);
+                console.error("Error writing to characteristic: ", error);
             });
         } else {
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
