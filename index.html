@@ -149,6 +149,12 @@
         console.log("Characteristic value changed: ", newValueReceived);
         retrievedValue.innerHTML = newValueReceived;
         timestampContainer.innerHTML = getDateTime();
+        if((newValueReceived.includes("AL"))
+            onButton.innerHTML = "REARMAR";
+        else  if(newValueReceived.localeCompare("LISTO")!=0)
+            onButton.innerHTML = "APAGAR";
+        else
+            onButton.innerHTML = "ENCENDER";
     }
 
     function writeOnCharacteristic(value, caracteristica){
