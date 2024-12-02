@@ -155,7 +155,7 @@
         }else{
              onButton.innerText = "ENCENDER";
         }
-         var BabfC=readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+         var BabfC=  await readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
          var abfC = new TextDecoder().decode(BabfC);
          console.log("reading string:", abfC);
          if(abfC.localeCompare("DESACTIVADO")==0){
