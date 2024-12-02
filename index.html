@@ -174,11 +174,12 @@
                 const arr1 = new Uint8Array(characteristic.readValue());
                 const decoder = new TextDecoder();
                 var stringRead =  decoder.decode(arr1);
+                console.error(" reading characteristic: ", stringRead);
                 return stringRead;
             })
-            .then(value => {
+          /*  .then(value => {
                 console.log("reading characteristic:", value);
-            })
+            })*/
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
             });
