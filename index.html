@@ -31,7 +31,7 @@
             <div class="card">
                 <h2>Iniciar Encendido</h2>
                 <button id="onButton" class="onButton">ENCENDER</button>
-                <button id="abfButton" class="onButton">BAJO FUEGO</button>
+                <button id="abfButton" class="onButton">AB-FUEGO</button>
               
             </div>
         </div>
@@ -150,12 +150,12 @@
         retrievedValue.innerHTML = newValueReceived;
         timestampContainer.innerHTML = getDateTime();
        
-        /*if((newValueReceived.includes("AL"))
-            onButton.textContent = "REARMAR";
+        if((newValueReceived.includes("AL"))
+            document.querySelector('#onButton').innerText = "REARMAR";
         else  if(newValueReceived.localeCompare("LISTO")!=0)
-            onButton.textContent = "APAGAR";
+             document.querySelector('#onButton').innerText = "APAGAR";
         else
-            onButton.textContent = "ENCENDER";*/
+             document.querySelector('#onButton').innerText = "ENCENDER";
     }
 
     function writeOnCharacteristic(value, caracteristica){
