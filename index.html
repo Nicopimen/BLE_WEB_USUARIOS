@@ -170,11 +170,11 @@
             .then(characteristic => {
                 console.log("Found the characteristic: ", characteristic.uuid);
                
-                 var stringRead = new TextDecoder("utf-8").decode(characteristic.readValue().getUint8(0));
+                 var stringRead = new TextDecoder().decode(characteristic.readValue().getArrayBuffer()));
                 return stringRead;
             })
             .then(value => {
-                console.log("reading characteristic:", value.getUint8(0));
+                console.log("reading characteristic:", value);
             })
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
