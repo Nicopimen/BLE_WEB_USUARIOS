@@ -63,6 +63,7 @@
     var bleServiceFound;
     var sensorCharacteristicFound;
     var abfC;
+    var stringRead;
 
     // Connect Button (search for BLE Devices only if BLE is available)
     connectButton.addEventListener('click', (event) => {
@@ -169,10 +170,11 @@
             bleServiceFound.getCharacteristic(caracteristica)
             .then(characteristic => {
                 console.log("Found the characteristic: ", characteristic.uuid);
-                return characteristic.readValue();
+                 stringRead = new TextDecoder().decode(characteristic.readValue());
+                return stringRead;
             })
             .then(value => {
-                console.log("reading characteristic:", value);
+                console.log("reading characteristic:", stringRead);
             })
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
