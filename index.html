@@ -175,10 +175,11 @@
                 const decoder = new TextDecoder();
                 var stringRead =  decoder.decode(arr1);
                */
-                return characteristic.readValue();
+                 characteristic.readValue();
             })
             .then(value => {
                 console.log("reading characteristic:", value);
+                return value;
             })
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
