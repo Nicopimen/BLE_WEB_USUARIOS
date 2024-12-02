@@ -170,7 +170,7 @@
             .then(characteristic => {
                 console.log("Found the characteristic: ", characteristic.uuid);
                
-                 var stringRead = new TextDecoder().decode(characteristic.readValue().getArrayBuffer());
+                 var stringRead = (characteristic.readValue());
                 return stringRead;
             })
             .then(value => {
