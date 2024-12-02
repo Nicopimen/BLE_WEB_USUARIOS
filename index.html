@@ -31,7 +31,7 @@
             <div class="card">
                 <h2>Iniciar Encendido</h2>
                 <button id="onButton" class="onButton">ENCENDER</button>
-                <button id="abfButton" class="onButton">AB-FUEGO</button>
+                <button id="abfButton" class="onButton">BAJO FUEGO</button>
               
             </div>
         </div>
@@ -151,15 +151,22 @@
         timestampContainer.innerHTML = getDateTime();
        
         if(newValueReceived.includes("AL")){
-            document.querySelector('#onButton').innerText = "REARMAR";
+            onButton.innerText = "REARMAR";
         }else  if(newValueReceived.localeCompare("LISTO")!=0){
-             document.querySelector('#onButton').innerText = "APAGAR";
+            onButton.innerText = "APAGAR";
         }else{
-             document.querySelector('#onButton').innerText = "ENCENDER";
+             onButton.innerText = "ENCENDER";
         }
     }
 
     function writeOnCharacteristic(value, caracteristica){
+        
+        if(caracteristica.localeCompare(ALTO_BAJO_CHARACTERISTIC_UUID)==0){
+            if(abfButton.innerText.localeCompare("BAJO FUEGO")==0){
+                abfButton.innerText="ALTO FUEGO";
+            }else
+                abfButton.innerText="BAJO FUEGO";
+        }
         if (bleServer && bleServer.connected) {
             bleServiceFound.getCharacteristic(caracteristica)
             .then(characteristic => {
