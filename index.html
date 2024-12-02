@@ -150,7 +150,7 @@
         retrievedValue.innerHTML = newValueReceived;
         timestampContainer.innerHTML = getDateTime();
        
-        if((newValueReceived.includes("AL")){
+        if(newValueReceived.includes("AL")){
             document.querySelector('#onButton').innerText = "REARMAR";
         }else  if(newValueReceived.localeCompare("LISTO")!=0){
              document.querySelector('#onButton').innerText = "APAGAR";
