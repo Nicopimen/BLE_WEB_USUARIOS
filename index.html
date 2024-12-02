@@ -53,18 +53,16 @@
     //Define BLE Device Specs
     var deviceName ='COFACO_BLE';
     var bleService = 'b8d7ce51-ab47-4ff8-aa8c-2fb686bbceb3';
-   // var ledCharacteristic = 'eeee0cae-4c2d-4222-83fa-a82322668851';
-   // var sensorCharacteristic= 'f60844f9-f620-4e3e-9c0d-e530339f9bb9';
-
-   var ESTADO_CHARACTERISTIC_UUID =        "f60844f9-f620-4e3e-9c0d-e530339f9bb9"
-   var START_STOP_CHARACTERISTIC_UUID =     "eeee0cae-4c2d-4222-83fa-a82322668851"
-   var ALTO_BAJO_CHARACTERISTIC_UUID =      "be2fb044-c6a5-46a8-97b2-2a8eae7012c1"
-   var PARAMETRO_CHARACTERISTIC_UUID =      "2bbdf4a6-104a-4c6d-a625-469fe13c4b53"
+    var ESTADO_CHARACTERISTIC_UUID =        "f60844f9-f620-4e3e-9c0d-e530339f9bb9"
+    var START_STOP_CHARACTERISTIC_UUID =     "eeee0cae-4c2d-4222-83fa-a82322668851"
+    var ALTO_BAJO_CHARACTERISTIC_UUID =      "be2fb044-c6a5-46a8-97b2-2a8eae7012c1"
+    var PARAMETRO_CHARACTERISTIC_UUID =      "2bbdf4a6-104a-4c6d-a625-469fe13c4b53"
 
     //Global Variables to Handle Bluetooth
     var bleServer;
     var bleServiceFound;
     var sensorCharacteristicFound;
+    var abfC;
 
     // Connect Button (search for BLE Devices only if BLE is available)
     connectButton.addEventListener('click', (event) => {
@@ -157,16 +155,43 @@
         }else{
              onButton.innerText = "ENCENDER";
         }
+         abfC=readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+         if(abfC.localeCompare("DESACTIVADO")==0){
+                abfButton.innerText="ALTO FUEGO";
+            }else
+                abfButton.innerText="BAJO FUEGO";
+        
+    }
+
+    function readCharacteristic(caracteristica){
+       
+        if (bleServer && bleServer.connected) {
+            bleServiceFound.getCharacteristic(caracteristica)
+            .then(characteristic => {
+                console.log("Found the characteristic: ", characteristic.uuid);
+                return characteristic.readValue();
+            })
+            .then(value => {
+                console.log("reading characteristic:", value);
+            })
+            .catch(error => {
+                console.error("Error reading to characteristic: ", error);
+            });
+        } else {
+            console.error ("Bluetooth is not connected. Cannot write to characteristic.")
+            window.alert("Bluetooth no conectado. \n Debe conectarse!")
+        }
     }
 
     function writeOnCharacteristic(value, caracteristica){
         
-        if(caracteristica.localeCompare(ALTO_BAJO_CHARACTERISTIC_UUID)==0){
+        /*if(caracteristica.localeCompare(ALTO_BAJO_CHARACTERISTIC_UUID)==0){
             if(abfButton.innerText.localeCompare("BAJO FUEGO")==0){
                 abfButton.innerText="ALTO FUEGO";
             }else
                 abfButton.innerText="BAJO FUEGO";
-        }
+        }*/
+        
         if (bleServer && bleServer.connected) {
             bleServiceFound.getCharacteristic(caracteristica)
             .then(characteristic => {
