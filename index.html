@@ -62,7 +62,7 @@
     var bleServer;
     var bleServiceFound;
     var sensorCharacteristicFound;
-    var abfC;
+    
     
     // Connect Button (search for BLE Devices only if BLE is available)
     connectButton.addEventListener('click', (event) => {
@@ -155,7 +155,8 @@
         }else{
              onButton.innerText = "ENCENDER";
         }
-         abfC=readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+         var BabfC=readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+        var abfC = new TextDecoder().decode(BabfC);
          if(abfC.localeCompare("DESACTIVADO")==0){
                 abfButton.innerText="ALTO FUEGO";
             }else
@@ -171,15 +172,15 @@
                 console.log("Found the characteristic: ", characteristic.uuid);
                
                  
-                /*const arr1 = new Uint8Array(characteristic.readValue());
-                const decoder = new TextDecoder();
-                var stringRead =  decoder.decode(arr1);
+                /*
+                
+                var stringRead =  new TextDecoder().decode(arr1);
                */
-                 characteristic.readValue();
+                return characteristic.readValue();
             })
             .then(value => {
                 console.log("reading characteristic:", value);
-                return value;
+                
             })
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
