@@ -35,10 +35,10 @@
                 <button id="abfButton" class="onButton">BAJO FUEGO</button>
               
             </div>
-
+           
             <div class="custom-select" style="width:200px;">
-              <select>
-                <option value="0">Parametro:</option>
+              <h2>Parametros del Quemador</h2>
+              <select  id="seleParm" onchange="leerParametro()">
                 <option value="1">TIEMPO_BARRIDO</option>
                 <option value="2">TIEMPO_ENCENDIDO</option>
                 <option value="3">TIEMPO_PRE_ENCENDIDO</option>
@@ -68,6 +68,8 @@
                 <option value="96">ACCION_CORTE_LUZ</option>
                 <option value="97">TIPO_ENT_ABF</option>
               </select>
+               <input id="parametro" >
+              <button id="actButton" class="onButton">Actualizar</button>  
             </div>
             
         </div>
@@ -269,6 +271,15 @@
             console.error ("Bluetooth is not connected. Cannot write to characteristic.")
             window.alert("Bluetooth no conectado. \n Debe conectarse!")
         }
+    }
+
+    function leerParametro(){
+        var e = document.getElementById("seleParm");
+        var value = e.value;
+        var parametro = e.options[e.selectedIndex].text;
+        //escribo la direccion del parametro, 
+        writeOnCharacteristic(value, PARAMETRO_CHARACTERISTIC_UUID);
+        
     }
 
     function disconnectDevice() {
