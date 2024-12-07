@@ -64,15 +64,15 @@ button {
 }
 
 input {
-  background: #24af37;
+  background: #f37;
   color: #fff;
   font-family: Verdana, sans-serif;
-  border: 0.5ch solid #24af37;
+  border: 0.5ch solid #f37;
 }
 
 select {
-  background: #24af37;
+  background: #f37;
   color: #fff;
   font-family: Verdana, sans-serif;
-  border: 0.5ch solid #24af37;
+  border: 0.5ch solid #f37;
 }
