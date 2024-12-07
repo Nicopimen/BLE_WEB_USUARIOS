@@ -281,6 +281,7 @@
         var value = e.value;
         var parametro = e.options[e.selectedIndex].text;
         //escribo la direccion del parametro, 
+         console.log('leo el parametro:',parametro);
         writeOnCharacteristic(value, PARAMETRO_CHARACTERISTIC_UUID);
         
     }
