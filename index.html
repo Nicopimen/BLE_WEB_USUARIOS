@@ -25,6 +25,8 @@
             <div class="card">
                 <h2>Estado del Quemador</h2>
                 <p class="reading"><span id="valueContainer">Sin Dato</span></p>
+                <p class="reading"><span id="tiempoState">Sin Dato</span></p>
+                <sup class="units">Seg</sup>
                 <p class="gray-label">Ultima Lectura: <span id="timestamp"></span></p>
             </div>
 
@@ -49,6 +51,8 @@
    // const latestValueSent = document.getElementById('valueSent');
     const bleStateContainer = document.getElementById('bleState');
     const timestampContainer = document.getElementById('timestamp');
+    const timesEstadoContainer = document.getElementById('tiempoState');
+    
 
     //Define BLE Device Specs
     var deviceName ='COFACO_BLE';
@@ -57,6 +61,7 @@
     var START_STOP_CHARACTERISTIC_UUID =     "eeee0cae-4c2d-4222-83fa-a82322668851"
     var ALTO_BAJO_CHARACTERISTIC_UUID =      "be2fb044-c6a5-46a8-97b2-2a8eae7012c1"
     var PARAMETRO_CHARACTERISTIC_UUID =      "2bbdf4a6-104a-4c6d-a625-469fe13c4b53"
+    var TIME_ESTADO_CHARACTERISTIC_UUID =     "9df5f2a4-4464-44f2-8159-bc84c218d566"
 
     //Global Variables to Handle Bluetooth
     var bleServer;
@@ -120,8 +125,15 @@
             sensorCharacteristicFound = characteristic;
             characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChange);
             characteristic.startNotifications();
-            console.log("Notifications Started.");
+            console.log("Notifications Started Estado.");
             return characteristic.readValue();
+        })
+
+         bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID)
+        .then(characteristic => {
+           characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChangeTiempo);
+           characteristic.startNotifications();
+         console.log("Notifications Started tiempo .");
         })
         /*.then(value => {
             console.log("Read value: ", value);
@@ -142,7 +154,15 @@
         connectToDevice();
     }
 
+     function handleCharacteristicChangeTiempo(event){
+       //para el tiempo del estado en seg
+         const newValueReceived = new TextDecoder().decode(event.target.value);
+        console.log("Characteristic value changed: ", newValueReceived);
+        timesEstadoContainer.innerHTML = newValueReceived;
+     }
+
     function handleCharacteristicChange(event){
+       //para el estado del quemador
         const newValueReceived = new TextDecoder().decode(event.target.value);
         console.log("Characteristic value changed: ", newValueReceived);
         retrievedValue.innerHTML = newValueReceived;
