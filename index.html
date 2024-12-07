@@ -35,46 +35,49 @@
                 <button id="abfButton" class="onButton">BAJO FUEGO</button>
               
             </div>
-           
-            <div class="custom-select" style="width:200px;">
-              <h2>Parametros del Quemador</h2>
-              <select  id="seleParm" onchange="leerParametro()">
-                <option value="1">TIEMPO_BARRIDO</option>
-                <option value="2">TIEMPO_ENCENDIDO</option>
-                <option value="3">TIEMPO_PRE_ENCENDIDO</option>
-                <option value="4">PILOTO_SPI</option>
-                <option value="5">TIEMPO_SQ3</option>
-                <option value="6">TIEMPO_MAX</option>
-                <option value="7">TIEMPO_POSTBARRIDO</option>
-                <option value="67">TIEMPO_PAB_INICIAL</option>
-                <option value="74">TIEMPO_AL_DET</option>
-                <option value="93">TIEMPO_PIL_INT</option>
-                <option value="94">TIEMPO_BUZZER</option>
-                <option value="12">ULTIMO_ESTADO</option>
-                <option value="13">MODO_INICIO</option>
-                <option value="16">MODO_PAB</option>
-                <option value="17">MODO_PGB</option>
-                <option value="62">MODO_MOTOR</option>
-                <option value="95">MODO_ENT_ABF</option>
-                <option value="21">MAX_TEMP_AMB</option>
-                <option value="22">CONTADOR_AL_CBT</option>
-                <option value="23">CONTADOR_AL_FLL</option>
-                <option value="26">CONTADOR_AL_PAB</option>
-                <option value="27">CONTADOR_AL_PGB</option>
-                <option value="29">CONTADOR_AL_TIEMPO_MAX</option>
-                <option value="30">CONTADOR_AL_TEMP</option>
-                <option value="31">AJUSTE_TEMP_AMB</option>
-                <option value="44">TEMP_AMBIENTE</option>
-                <option value="96">ACCION_CORTE_LUZ</option>
-                <option value="97">TIPO_ENT_ABF</option>
-              </select>
-               <input id="parametro" >
-              <button id="actButton" class="onButton">Actualizar</button>  
-            </div>
             
-        </div>
-    </div>
-   
+            <div class="card-grid">
+                <div class="card">
+                    <div class="custom-select" style="width:200px;">
+                      <h2>Parametros del Quemador</h2>
+                      <select  id="seleParm" onchange="leerParametro()">
+                        <option value="1">TIEMPO_BARRIDO</option>
+                        <option value="2">TIEMPO_ENCENDIDO</option>
+                        <option value="3">TIEMPO_PRE_ENCENDIDO</option>
+                        <option value="4">PILOTO_SPI</option>
+                        <option value="5">TIEMPO_SQ3</option>
+                        <option value="6">TIEMPO_MAX</option>
+                        <option value="7">TIEMPO_POSTBARRIDO</option>
+                        <option value="67">TIEMPO_PAB_INICIAL</option>
+                        <option value="74">TIEMPO_AL_DET</option>
+                        <option value="93">TIEMPO_PIL_INT</option>
+                        <option value="94">TIEMPO_BUZZER</option>
+                        <option value="12">ULTIMO_ESTADO</option>
+                        <option value="13">MODO_INICIO</option>
+                        <option value="16">MODO_PAB</option>
+                        <option value="17">MODO_PGB</option>
+                        <option value="62">MODO_MOTOR</option>
+                        <option value="95">MODO_ENT_ABF</option>
+                        <option value="21">MAX_TEMP_AMB</option>
+                        <option value="22">CONTADOR_AL_CBT</option>
+                        <option value="23">CONTADOR_AL_FLL</option>
+                        <option value="26">CONTADOR_AL_PAB</option>
+                        <option value="27">CONTADOR_AL_PGB</option>
+                        <option value="29">CONTADOR_AL_TIEMPO_MAX</option>
+                        <option value="30">CONTADOR_AL_TEMP</option>
+                        <option value="31">AJUSTE_TEMP_AMB</option>
+                        <option value="44">TEMP_AMBIENTE</option>
+                        <option value="96">ACCION_CORTE_LUZ</option>
+                        <option value="97">TIPO_ENT_ABF</option>
+                      </select>
+                       <input id="parametro" >
+                      <button id="actButton" class="onButton">Actualizar</button>  
+                    </div>
+                 </div>
+                </div>
+            </div>
+            </div>
+           
 </body>
 <script>
     // DOM Elements
