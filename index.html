@@ -25,8 +25,7 @@
             <div class="card">
                 <h2>Estado del Quemador</h2>
                 <p class="reading"><span id="valueContainer">Sin Dato</span></p>
-                <p class="reading"><span id="tiempoState">Sin Dato</span></p>
-                <sup class="units">Seg</sup>
+                <p class="reading"><span id="tiempoState">Sin Dato</span>  <sup class="units">Seg</sup> </p>
                 <p class="gray-label">Ultima Lectura: <span id="timestamp"></span></p>
             </div>
 
@@ -126,10 +125,10 @@
             characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChange);
             characteristic.startNotifications();
             console.log("Notifications Started Estado.");
-            return characteristic.readValue();
+            return bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID); // characteristic.readValue();
         })
 
-         bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID)
+        // bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID)
         .then(characteristic => {
            characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChangeTiempo);
            characteristic.startNotifications();
