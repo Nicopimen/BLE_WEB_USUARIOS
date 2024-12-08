@@ -177,7 +177,7 @@
              onButton.innerText = "ENCENDER";
         }
         readCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID); 
-        readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+       // readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
        
            
        
@@ -211,6 +211,7 @@
                     const newValueReceived = new TextDecoder().decode(value);
                     console.log("Characteristic value changed: ", newValueReceived);
                     timesEstadoContainer.innerHTML = newValueReceived;
+                    readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
                 }
             })
             .catch(error => {
