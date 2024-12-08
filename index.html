@@ -167,7 +167,7 @@
         const newValueReceived = new TextDecoder().decode(event.target.value);
         console.log("Characteristic value changed: ", newValueReceived);
         retrievedValue.innerHTML = newValueReceived;
-       // timestampContainer.innerHTML = getDateTime();
+        timestampContainer.innerHTML = getDateTime();
        
         if(newValueReceived.includes("AL")){
             onButton.innerText = "REARMAR";
@@ -176,7 +176,7 @@
         }else{
              onButton.innerText = "ENCENDER";
         }
-         var BabfC = readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+        // var BabfC = readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
         
         
     }
