@@ -167,7 +167,7 @@
         const newValueReceived = new TextDecoder().decode(event.target.value);
         console.log("Characteristic value changed: ", newValueReceived);
         retrievedValue.innerHTML = newValueReceived;
-        timestampContainer.innerHTML = getDateTime();
+       // timestampContainer.innerHTML = getDateTime();
        
         if(newValueReceived.includes("AL")){
             onButton.innerText = "REARMAR";
