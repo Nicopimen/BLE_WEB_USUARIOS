@@ -16,6 +16,7 @@ body {
 }
 .content {
     padding: 50px; 
+    background-color: #0e42ed;
 }
 .card-grid {
     max-width: 800px;
@@ -26,9 +27,27 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 .card {
-    background-color: white;
+    background-color:  rgb(121, 137, 207);
     box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    border-radius: 10px;
 }
+
+.param-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.param {
+    background-color:  rgb(121, 137, 207);
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    border-radius: 10px;
+}
+
+
+
 button {
     color: white;
     padding: 14px 20px;
@@ -61,18 +80,28 @@ button {
 
 .reading {
     font-size: 1.8rem;
+    color: white;
 }
 
 input {
-  background: #1e9;
+  background: #1b8a94;
   color: #fff;
   font-family: Verdana, sans-serif;
-  border: 0.5ch solid #1e9;
+  border: 0.5ch solid #1b8a94;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 4px;
+  text-align: center;
+  max-width: 180px;
 }
 
 select {
-  background: #1e9;
+  background: #1b8a94;
   color: #fff;
   font-family: Verdana, sans-serif;
-  border: 0.5ch solid #1e9;
+  border: 0.5ch solid #1b8a94;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  
 }
