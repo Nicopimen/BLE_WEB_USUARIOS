@@ -127,10 +127,10 @@
             characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChange);
             characteristic.startNotifications();
             console.log("Notifications Started Estado.");
-            return bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID); // characteristic.readValue();
+            //return bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID); // characteristic.readValue();
         })
 
-        // bleServiceFound.getCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID)
+       /*
         .then(characteristic => {
            characteristic.addEventListener('characteristicvaluechanged', handleCharacteristicChangeTiempo);
            characteristic.startNotifications();
@@ -176,7 +176,8 @@
         }else{
              onButton.innerText = "ENCENDER";
         }
-        // var BabfC = readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+         readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
+         readCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID);
         
         
     }
@@ -184,21 +185,29 @@
     function readCharacteristic(caracteristica){
        
         if (bleServer && bleServer.connected) {
+           
             bleServiceFound.getCharacteristic(caracteristica)
             .then(characteristic => {
-                console.log("Found the characteristic: ", characteristic.uuid);
-               
+                console.log("Found the characteristic: ", characteristic.uuid);    
                 return characteristic.readValue();
             })
             .then(value => {
                 console.log("reading characteristic:", value);
-                 var abfC = new TextDecoder().decode(value);
-                 console.log("reading string:", abfC);
-                 if(abfC.localeCompare("DESACTIVADO")==0){
-                        abfButton.innerText="ALTO FUEGO";
-                    }else
-                        abfButton.innerText="BAJO FUEGO";
-                        
+               
+                if(caracteristica==ALTO_BAJO_CHARACTERISTIC_UUID){
+                    var abfC = new TextDecoder().decode(value);
+                     console.log("reading string:", abfC);
+                     if(abfC.localeCompare("DESACTIVADO")==0){
+                            abfButton.innerText="ALTO FUEGO";
+                        }else
+                            abfButton.innerText="BAJO FUEGO";
+                }
+
+                if(caracteristica==TIME_ESTADO_CHARACTERISTIC_UUID){
+                    const newValueReceived = new TextDecoder().decode(value);
+                    console.log("Characteristic value changed: ", newValueReceived);
+                    timesEstadoContainer.innerHTML = newValueReceived;
+                }
             })
             .catch(error => {
                 console.error("Error reading to characteristic: ", error);
