@@ -177,7 +177,10 @@
              onButton.innerText = "ENCENDER";
         }
          readCharacteristic(ALTO_BAJO_CHARACTERISTIC_UUID);
-         readCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID);
+        .then( => {
+            readCharacteristic(TIME_ESTADO_CHARACTERISTIC_UUID);
+        })
+        
         
         
     }
