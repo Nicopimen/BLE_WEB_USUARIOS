@@ -46,8 +46,6 @@ body {
     border-radius: 10px;
 }
 
-
-
 button {
     color: white;
     padding: 14px 20px;
@@ -76,7 +74,6 @@ button {
 .gray-label {
     color: #bebebe;    
     font-size: 1rem;
-    margin: 20px 0;
 }
 
 .reading {
