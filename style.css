@@ -10,7 +10,6 @@ h1 {
 .topnav {
     overflow: hidden;
     background-color: #0A1128;
-     border-radius: 10px;
 }
 body {
     margin: 0;
@@ -18,7 +17,6 @@ body {
 .content {
     padding: 50px; 
     background-color: #0e42ed;
-    border-radius: 10px;
 }
 .card-grid {
     max-width: 800px;
@@ -78,6 +76,7 @@ button {
 .gray-label {
     color: #bebebe;    
     font-size: 1rem;
+    margin: 20px 0;
 }
 
 .reading {
